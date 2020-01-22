@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 const getFiles = require('./fileSystemAPI');
 
 app.get('/events', (req, res) => {
-  // http://localhost:3000/events?dir=/Users/tonyjhuang/tesla_cam_player/TeslaCam
+  // http://localhost:3001/events?dir=/Users/tonyjhuang/tesla_cam_player/TeslaCam
   res.json({
     events: getFiles(req.query.dir)
   });
 });
 
 app.get('/videos', (req, res) => {
-  // http://localhost:3000/videos?filePath=/Users/tonyjhuang/tesla_cam_player/TeslaCam/SavedClips/2019-07-21_16-48-02/2019-07-21_16-37-36-left_repeater.mp4
+  // http://localhost:3001/videos?filePath=/Users/tonyjhuang/tesla_cam_player/TeslaCam/SavedClips/2019-07-21_16-48-02/2019-07-21_16-37-36-left_repeater.mp4
   res.sendFile(req.query.filePath);
 });
 
