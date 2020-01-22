@@ -1,17 +1,20 @@
 import React from 'react';
 
-export default function FileSelectionList ({events}) {
-  
+export default function FileSelectionList ({events, setActiveEvent}) {
+
   const eventsList = Object.keys(events).map((event) => {
     return (
-      <li>
+      <li 
+        key={event}
+        onClick={() => setActiveEvent(event)}
+      >
         {event}
       </li>
     )
   });
 
   return (
-    <ul>
+    <ul id="file-selection-list">
       {eventsList}
     </ul>
   );
