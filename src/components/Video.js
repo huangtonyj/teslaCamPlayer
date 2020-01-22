@@ -1,23 +1,21 @@
 import React from 'react'
+const videoAPIEndpoint = "http://localhost:3001/videos?filePath=";
  
-export default function Video({angle, videoAPIEndpoint, filePath}) {
+export default function Video({angle, filePath}) {
   if (!filePath) { return null; }
 
-  console.log(`${videoAPIEndpoint}${filePath[angle]}`)
+  // console.log(`${videoAPIEndpoint}${filePath[angle]}`)
 
   return (
-    <div>
-      {angle}
       <video 
-        controls="" 
-        width="320"
-        height="240"
+        id={`video-${angle}`}
+        controls=""
         autoPlay
         name="media"
         src = {`${videoAPIEndpoint}${filePath[angle]}`}
         type = "video/mp4"
       />
-    </div>
+    
   );
 
 }
