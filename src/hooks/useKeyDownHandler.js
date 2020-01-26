@@ -8,9 +8,7 @@ export default function useKeyDownHandler() {
 
   useEffect(() => {
 
-    const onKeyDown = ({
-      key
-    }) => {
+    const onKeyDown = ({key}) => {
       const videoFront = document.getElementById('video-front');
       const videoLeftRepeater = document.getElementById('video-left_repeater');
       const videoRightRepeater = document.getElementById('video-right_repeater');
@@ -30,25 +28,31 @@ export default function useKeyDownHandler() {
           break;
 
         case ">":
-          const playbackRate = Math.min(mediaControl.playbackRate * 2, 16);
-          videos.forEach((video) => video.playbackRate = playbackRate);
+          const fasterPlaybackRate = Math.min(mediaControl.playbackRate * 2, 16);
+          videos.forEach((video) => video.playbackRate = fasterPlaybackRate);
+          setMediaControl({
+            ...mediaControl, 
+            playbackRate: fasterPlaybackRate});
+          break;
+
+        case "<":
+          const slowerPlaybackRate = Math.max(mediaControl.playbackRate / 2, 1);
+          videos.forEach((video) => video.playbackRate = slowerPlaybackRate);
           setMediaControl({
             ...mediaControl,
-            playbackRate
-          })
+            playbackRate: slowerPlaybackRate
+          });
           break;
 
         default:
-          // console.log(key);
+          console.log(key);
           return;
       }
     }
 
     document.addEventListener('keydown', onKeyDown)
-
-
-    console.log(mediaControl);
-
+    
+    console.table(mediaControl);
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
