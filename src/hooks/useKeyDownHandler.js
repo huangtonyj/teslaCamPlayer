@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+const playBackRateMultiplier = 2;
+const skipRate = 3;
 
 export default function useKeyDownHandler() {
   const [mediaControl, setMediaControl] = useState({
@@ -28,7 +30,7 @@ export default function useKeyDownHandler() {
           break;
 
         case ">":
-          const fasterPlaybackRate = Math.min(mediaControl.playbackRate * 2, 16);
+          const fasterPlaybackRate = Math.min(mediaControl.playbackRate * playBackRateMultiplier, 16);
           videos.forEach((video) => video.playbackRate = fasterPlaybackRate);
           setMediaControl({
             ...mediaControl, 
@@ -36,12 +38,22 @@ export default function useKeyDownHandler() {
           break;
 
         case "<":
-          const slowerPlaybackRate = Math.max(mediaControl.playbackRate / 2, 1);
+          const slowerPlaybackRate = Math.max(mediaControl.playbackRate / playBackRateMultiplier, 1);
           videos.forEach((video) => video.playbackRate = slowerPlaybackRate);
           setMediaControl({
             ...mediaControl,
             playbackRate: slowerPlaybackRate
           });
+          break;
+
+        case "ArrowRight":
+          const videoFastForwardTime = videoFront.currentTime + skipRate;
+          videos.forEach((video) => video.currentTime = videoFastForwardTime);
+          break;
+
+        case "ArrowLeft":
+          const videoRewindTime = videoFront.currentTime - skipRate;
+          videos.forEach((video) => video.currentTime = videoRewindTime);
           break;
 
         default:
