@@ -9,7 +9,7 @@ export default function FileSelectionList ({events, setActiveEvent, activeEvent}
         onClick={() => setActiveEvent(event)}
         className={event === activeEvent ? 'active' : ''}
       >
-        {event}
+        {strToDate(event)}
       </li>
     )
   });
@@ -19,4 +19,10 @@ export default function FileSelectionList ({events, setActiveEvent, activeEvent}
       {eventsList}
     </ul>
   );
+}
+
+function strToDate(str) {
+  const [year, month, day, hour, minute, second] = str.replace('_', '-').split('-');
+
+  return `${month}-${day} .... ${hour}:${minute}`
 }
