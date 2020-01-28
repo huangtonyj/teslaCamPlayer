@@ -14,6 +14,17 @@ export default function App() {
 
     async function fetchEvents() {
       const result = await axios(`http://localhost:3001/events?dir=${dir}`)
+      let current = null;
+
+      // Chain events to add ability to skip to next video
+      Object.entries(result.data).forEach(([key, val]) => {
+        val.event = key;
+        val.prev = current;
+        val.next = null;
+        if (current) { val.prev.next = result.data[key]; }
+        current = result.data[key];
+      })
+
       setEvents(result.data);
     }
 
@@ -30,12 +41,16 @@ export default function App() {
       <FileSelectionList
         events={events}
         setActiveEvent={setActiveEvent}
+        activeEvent={activeEvent}
       />
 
+      <h2>{activeEvent}</h2>
       <div id="video-container">
+
         <Video
           angle="front"
           filePath={events[activeEvent]}
+          onEndedCallback={() => setActiveEvent(events[activeEvent].next.event)}
         />
 
         <div id="side-angle-video-container">
