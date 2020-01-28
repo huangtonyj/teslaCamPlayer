@@ -31,7 +31,20 @@ export default function App() {
     fetchEvents();
   }, []);
 
+
   const [activeEvent, setActiveEvent] = useState(); 
+
+  useEffect(() => {
+    const videoFront = document.getElementById('video-front');
+    const videoLeftRepeater = document.getElementById('video-left_repeater');
+    const videoRightRepeater = document.getElementById('video-right_repeater');
+    const videos = [videoFront, videoLeftRepeater, videoRightRepeater];
+
+    if (!videoFront) return;
+
+    videos.forEach((video) => video.playbackRate = mediaControl.playbackRate);
+  }, [activeEvent])
+
 
   const [mediaControl, setMediaControl] = useState({
     play: true,
@@ -50,8 +63,6 @@ export default function App() {
       />
 
       <div id="video-container">
-        <h2>{activeEvent}</h2>
-
         <Video
           angle="front"
           filePath={events[activeEvent]}
