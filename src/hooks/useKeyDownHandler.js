@@ -2,14 +2,8 @@ import { useState, useEffect } from 'react';
 const playBackRateMultiplier = 2;
 const skipRate = 3;
 
-export default function useKeyDownHandler() {
-  const [mediaControl, setMediaControl] = useState({
-    play: true,
-    playbackRate: 4,
-  });
-
+export default function useKeyDownHandler({mediaControl, setMediaControl}) {
   useEffect(() => {
-
     const onKeyDown = ({key}) => {
       const videoFront = document.getElementById('video-front');
       const videoLeftRepeater = document.getElementById('video-left_repeater');

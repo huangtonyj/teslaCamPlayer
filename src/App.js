@@ -33,7 +33,12 @@ export default function App() {
 
   const [activeEvent, setActiveEvent] = useState(); 
 
-  useKeyDownHandler()
+  const [mediaControl, setMediaControl] = useState({
+    play: true,
+    playbackRate: 16,
+  });
+
+  useKeyDownHandler({mediaControl, setMediaControl})
   
   return (
     <div id="app">
@@ -44,8 +49,8 @@ export default function App() {
         activeEvent={activeEvent}
       />
 
-      <h2>{activeEvent}</h2>
       <div id="video-container">
+        <h2>{activeEvent}</h2>
 
         <Video
           angle="front"
