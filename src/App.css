@@ -1,4 +1,5 @@
 #app {
+  background-color: rgb(20, 20, 20);
   overflow-y: hidden;
   height: 100vh;
 
@@ -10,22 +11,30 @@
 #file-selection-list {
   overflow-y: scroll;
   flex: 1;
-  border: 1px solid black;
+  border: 1px solid rgb(200, 200, 200);
   margin: 1rem;
-  padding: 0rem 1rem;
+  padding: 0rem 0rem;
 }
 
 #file-selection-list > li{
   list-style: none;
   font-size: 1.2rem;
+  margin: 0.5rem;
+  text-align: center;
+  color: white;
 }
 
 #file-selection-list > li:hover{
   background-color: rgba(50, 50, 200, 0.5);
 }
 
+#file-selection-list > li.active {
+  background-color: rgba(50, 50, 200, 0.5);
+  font-weight: 600;
+}
+
 #video-container {
-  flex: 7;
+  flex: 6;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -35,15 +44,18 @@
 }
 
 #video-front {
-  height: 600px;
+  height: 38rem;
+  border: 1px solid white;
 }
 
 #video-left_repeater {
-  height: 360px;
-  margin: 0;
+  height: 19rem;
+  margin: 1rem;
+  border: 1px solid white;
 }
 
 #video-right_repeater {
-  height: 360px;
-  margin: 0;
+  height: 19rem;
+  margin: 1rem;
+  border: 1px solid white;
 }
