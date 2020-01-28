@@ -5,7 +5,7 @@ const skipRate = 3;
 export default function useKeyDownHandler() {
   const [mediaControl, setMediaControl] = useState({
     play: true,
-    playbackRate: 1,
+    playbackRate: 4,
   });
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function useKeyDownHandler() {
       const videos = [videoFront, videoLeftRepeater, videoRightRepeater];
 
       switch (key) {
-        case " ":
+        case " ": {
           if (mediaControl.play) {
             videos.forEach((video) => video.pause());
           } else {
@@ -28,16 +28,18 @@ export default function useKeyDownHandler() {
             play: !mediaControl.play
           })
           break;
+        }
 
-        case ">":
+        case ">": {
           const fasterPlaybackRate = Math.min(mediaControl.playbackRate * playBackRateMultiplier, 16);
           videos.forEach((video) => video.playbackRate = fasterPlaybackRate);
           setMediaControl({
             ...mediaControl, 
             playbackRate: fasterPlaybackRate});
           break;
+          }
 
-        case "<":
+        case "<": {
           const slowerPlaybackRate = Math.max(mediaControl.playbackRate / playBackRateMultiplier, 1);
           videos.forEach((video) => video.playbackRate = slowerPlaybackRate);
           setMediaControl({
@@ -45,20 +47,29 @@ export default function useKeyDownHandler() {
             playbackRate: slowerPlaybackRate
           });
           break;
+        }
 
-        case "ArrowRight":
+        case "ArrowRight":{
           const videoFastForwardTime = videoFront.currentTime + skipRate;
           videos.forEach((video) => video.currentTime = videoFastForwardTime);
           break;
+          }
 
-        case "ArrowLeft":
+        case "ArrowLeft": {
           const videoRewindTime = videoFront.currentTime - skipRate;
           videos.forEach((video) => video.currentTime = videoRewindTime);
           break;
+          }
 
-        default:
+        case "ArrowDown": {
+          // select next video
+          break;
+          }
+
+        default: {
           console.log(key);
           return;
+        }
       }
     }
 
