@@ -6,9 +6,10 @@ export default function useKeyDownHandler({mediaControl, setMediaControl}) {
   useEffect(() => {
     const onKeyDown = ({key}) => {
       const videoFront = document.getElementById('video-front');
+      const videoBack = document.getElementById('video-back');
       const videoLeftRepeater = document.getElementById('video-left_repeater');
       const videoRightRepeater = document.getElementById('video-right_repeater');
-      const videos = [videoFront, videoLeftRepeater, videoRightRepeater];
+      const videos = [videoFront, videoBack, videoLeftRepeater, videoRightRepeater];
 
       switch (key) {
         case " ": {

@@ -10,7 +10,8 @@ export default function App() {
   const [events, setEvents] = useState({});
 
   useEffect((dir) => {
-    dir = '/Users/tonyjhuang/tesla_cam_player/TeslaCam';
+    // dir = '/Users/tonyjhuang/tesla_cam_player/TeslaCam';
+    dir = '/Users/tonyjhuang/tesla_cam_player/mkv';
     // dir = '/Volumes/NO\ NAME/TeslaCam/SavedClips';
 
     async function fetchEvents() {
@@ -37,9 +38,10 @@ export default function App() {
 
   useEffect(() => {
     const videoFront = document.getElementById('video-front');
+    const videoBack = document.getElementById('video-back');
     const videoLeftRepeater = document.getElementById('video-left_repeater');
     const videoRightRepeater = document.getElementById('video-right_repeater');
-    const videos = [videoFront, videoLeftRepeater, videoRightRepeater];
+    const videos = [videoFront, videoBack, videoLeftRepeater, videoRightRepeater];
 
     if (!videoFront) return;
 
