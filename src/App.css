@@ -47,17 +47,27 @@
 
 #video-front {
   height: 38rem;
+  width: 50rem;
   border: 1px solid white;
 }
 
 #video-left_repeater {
   height: 19rem;
+  width: 25rem;
+  margin: 1rem;
+  border: 1px solid white;
+}
+
+#video-back {
+  height: 19rem;
+  width: 25rem;
   margin: 1rem;
   border: 1px solid white;
 }
 
 #video-right_repeater {
   height: 19rem;
+  width: 25rem;
   margin: 1rem;
   border: 1px solid white;
 }
