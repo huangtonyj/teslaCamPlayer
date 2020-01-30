@@ -32,7 +32,7 @@ export default function App() {
   }, []);
 
 
-  const [activeEvent, setActiveEvent] = useState(); 
+  const [activeEvent, setActiveEvent] = useState(''); 
 
   useEffect(() => {
     const videoFront = document.getElementById('video-front');
@@ -53,6 +53,38 @@ export default function App() {
 
   useKeyDownHandler({mediaControl, setMediaControl})
   
+  const videoContainer = activeEvent ? (
+    <div id="video-container">
+      <Video
+        angle="front"
+        filePath={events[activeEvent]}
+        onEndedCallback={() => setActiveEvent(events[activeEvent].next.event)}
+      />
+
+      <div id="side-angle-video-container">
+        <Video
+          angle="left_repeater"
+          filePath={events[activeEvent]}
+        />
+
+        <Video
+          // angle="rear"
+          angle="right_repeater"
+          filePath={events[activeEvent]}
+        />
+
+        <Video
+          angle="right_repeater"
+          filePath={events[activeEvent]}
+        />
+      </div>
+    </div>
+  ) : (
+    <div id="video-container">
+      <p>Select an event to view.</p>
+    </div>
+  )
+
   return (
     <div id="app">
 
@@ -62,25 +94,7 @@ export default function App() {
         activeEvent={activeEvent}
       />
 
-      <div id="video-container">
-        <Video
-          angle="front"
-          filePath={events[activeEvent]}
-          onEndedCallback={() => setActiveEvent(events[activeEvent].next.event)}
-        />
-
-        <div id="side-angle-video-container">
-          <Video
-            angle="left_repeater"
-            filePath={events[activeEvent]}
-          />
-
-          <Video
-            angle="right_repeater"
-            filePath={events[activeEvent]}
-          />
-        </div>
-      </div>
+      {videoContainer}
 
     </div>
   );
