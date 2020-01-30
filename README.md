@@ -1,7 +1,7 @@
 # TeslaCam Video Player
 
 ## What is it?
-A desktop app to play recorderd footage from all 4 Tesla sentry cameras simutaneously.
+A desktop app to view recorded footage from all 4 Tesla sentry cameras simultaneously.
 
 ## Keyboard Inputs:
 | Keyboard Input | Description            |                |
@@ -23,3 +23,10 @@ A desktop app to play recorderd footage from all 4 Tesla sentry cameras simutane
 
 ## Development Mode:
 $ yarn electron-dev
+
+
+## TODO:
+- Custom directory (drag into app)
+- Add rear camera
+- upArrow/downArrow input
+- Build production app
