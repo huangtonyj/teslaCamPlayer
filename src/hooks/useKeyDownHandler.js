@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {useEffect } from 'react';
 const playBackRateMultiplier = 2;
 const skipRate = 3;
 
