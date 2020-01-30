@@ -11,6 +11,7 @@ export default function App() {
 
   useEffect((dir) => {
     dir = '/Users/tonyjhuang/tesla_cam_player/TeslaCam';
+    // dir = '/Volumes/NO\ NAME/TeslaCam/SavedClips';
 
     async function fetchEvents() {
       const result = await axios(`http://localhost:3001/events?dir=${dir}`)
@@ -68,8 +69,7 @@ export default function App() {
         />
 
         <Video
-          // angle="rear"
-          angle="right_repeater"
+          angle="back"
           filePath={events[activeEvent]}
         />
 
